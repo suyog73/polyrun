@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^6.0.1
   page_transition: ^2.0.4
+  google_fonts: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -88,6 +89,11 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

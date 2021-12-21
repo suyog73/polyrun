@@ -20,17 +20,17 @@ class InputFields extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(27),
           color: isDark
-              ? Colors.grey.shade600.withOpacity(0.1)
-              : Colors.grey.shade300.withOpacity(0.1),
+              ? Color(0xff121322).withOpacity(0.2)
+              : Colors.grey.shade300.withOpacity(0.2),
           border: Border.all(
             color: isDark
-                ? Colors.grey.shade700.withOpacity(0.2)
+                ? Colors.grey.shade700.withOpacity(0.15)
                 : Colors.grey.shade500.withOpacity(0.1),
           ),
         ),
         child: TextFormField(
           style: TextStyle(
-            color: Color(0xff818496),
+            color: Color(0xff818496).withOpacity(0.1),
             fontSize: 14,
           ),
           decoration: kTextFormFieldAuthDec.copyWith(

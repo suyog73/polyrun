@@ -2,12 +2,9 @@
 
 import 'dart:async';
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:work_app/helpers/constants.dart';
-import 'package:work_app/providers/theme_provider.dart';
 import 'package:work_app/screens/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -36,8 +33,8 @@ class _SplashScreenState extends State<SplashScreen> {
         : false;
 
     Color color = isDark
-        ? Colors.black.withOpacity(0.75)
-        : Colors.white.withOpacity(0.75);
+        ? Color(0xff0B0D1B).withOpacity(0.7)
+        : Colors.white.withOpacity(0.5);
 
     print('darkmode: $isDark');
 
@@ -45,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/background.png'),
+            image: AssetImage('assets/images/splashback.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -53,46 +50,65 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             ClipRect(
               child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 25.0, sigmaY: 25.0),
+                filter: ImageFilter.blur(sigmaX: 50.0, sigmaY: 50.0),
                 child: Container(
                   color: color,
                 ),
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/background2.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Hero(
-                      tag: kHeroTag,
-                      child: Image(
-                        image: AssetImage('assets/images/logo.png'),
-                        width: 100,
-                        height: 130,
-                      ),
+            isDark
+                ? ColorFiltered(
+                    colorFilter: ColorFilter.mode(
+                      Color(0xff0B0D1B).withOpacity(0.05),
+                      // 0 = Colored, 1 = Black & White
+                      BlendMode.saturation,
                     ),
-                    SizedBox(height: 19),
-                    Text(
-                      'Polyrun',
-                      style: TextStyle(
-                        color: Color(0xffE8547C),
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/splashback2.png'),
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    )
-                  ],
-                ),
-              ),
-            ),
+                      child: SplashTp(),
+                    ))
+                : SplashTp(),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class SplashTp extends StatelessWidget {
+  const SplashTp({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Hero(
+            tag: kHeroTag,
+            child: Image(
+              image: AssetImage('assets/images/logo.png'),
+              width: 100,
+              height: 130,
+            ),
+          ),
+          SizedBox(height: 19),
+          Text(
+            'Polyrun',
+            style: TextStyle(
+              color: Color(0xffE8547C),
+              fontSize: 24,
+              fontWeight: FontWeight.w500,
+            ),
+          )
+        ],
       ),
     );
   }
