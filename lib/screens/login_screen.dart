@@ -21,14 +21,11 @@ class LoginScreen extends StatelessWidget {
         ? true
         : false;
 
-    Color color = isDark
-        ? Colors.black.withOpacity(0.75)
-        : Colors.white.withOpacity(0.75);
-
+    Color color = isDark ? Color(0xff0B0D1B) : Colors.white;
     print('darkmode: $isDark');
 
     return Scaffold(
-      backgroundColor: isDark ? Color(0xff0B0D1B) : Colors.white,
+      backgroundColor: color,
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
@@ -80,7 +77,7 @@ class LoginScreen extends StatelessWidget {
               child: Container(
                 height: size.height / 1.3,
                 decoration: BoxDecoration(
-                  color: isDark ? Color(0xff0B0D1B) : Colors.white,
+                  color: color,
                   boxShadow: [
                     BoxShadow(
                       offset: Offset(0.0, 1.0), //(x,y)

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:work_app/providers/theme_provider.dart';
-import 'package:work_app/screens/splash_screen.dart';
+import 'package:work_app/screens/bottom_navigation.dart';
+import 'package:work_app/screens/statistics.dart';
+import 'package:work_app/screens/tp.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
           themeMode: ThemeMode.system,
           theme: MyTheme.lightTheme,
           darkTheme: MyTheme.darkTheme,
-          home: const SplashScreen(),
+          home: const BottomNavigation(),
         );
       },
     );
