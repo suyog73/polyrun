@@ -7,6 +7,8 @@ import 'package:work_app/screens/setting.dart';
 import 'package:work_app/screens/statistics.dart';
 import 'package:work_app/screens/tracking.dart';
 
+bool isExtend = false;
+
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({Key? key}) : super(key: key);
 
@@ -15,12 +17,13 @@ class BottomNavigation extends StatefulWidget {
 }
 
 int _currentIndex = 0;
-final screens = [Statistics(), Tracking(), History(), Profile(), Setting()];
+final screens = [Statistics(), History(), Tracking(), Profile(), Setting()];
 
 class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: isExtend,
       backgroundColor: Color(0xff0B0D1B),
       body: screens[_currentIndex],
       bottomNavigationBar: Container(
@@ -46,7 +49,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
             unselectedIconTheme: IconThemeData(
               color: Color(0xff818496).withOpacity(0.7),
             ),
-            onTap: (index) => setState(() => _currentIndex = index),
+            onTap: (index) => setState(() {
+              _currentIndex = index;
+              isExtend = index != 0;
+            }),
             items: [
               BottomNavigationBarItem(
                 icon: ImageIcon(
@@ -58,7 +64,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 icon: ImageIcon(
                   AssetImage("assets/icons/nav2.png"),
                 ),
-                label: 'tracking',
+                label: 'auth_screens',
               ),
               BottomNavigationBarItem(
                 icon: ImageIcon(

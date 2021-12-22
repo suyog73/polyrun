@@ -5,7 +5,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:work_app/helpers/constants.dart';
-import 'package:work_app/screens/login_screen.dart';
+import 'package:work_app/screens/auth_screens/login_screen2.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -19,9 +19,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-      Duration(seconds: 1),
+      Duration(seconds: 3),
       () => Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (BuildContext context) => LoginScreen()),
+        MaterialPageRoute(builder: (BuildContext context) => LoginScreen2()),
       ),
     );
   }
@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
         : false;
 
     Color color = isDark
-        ? Color(0xff0B0D1B).withOpacity(0.7)
+        ? Color(0xff0B0D1B).withOpacity(0.2)
         : Colors.white.withOpacity(0.5);
 
     print('darkmode: $isDark');
@@ -52,26 +52,21 @@ class _SplashScreenState extends State<SplashScreen> {
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 50.0, sigmaY: 50.0),
                 child: Container(
-                  color: color,
-                ),
+                    // color: color,
+                    ),
               ),
             ),
             isDark
-                ? ColorFiltered(
-                    colorFilter: ColorFilter.mode(
-                      Color(0xff0B0D1B).withOpacity(0.05),
-                      // 0 = Colored, 1 = Black & White
-                      BlendMode.saturation,
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/splashback2.png'),
-                          fit: BoxFit.cover,
-                        ),
+                ? Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/splashback2.png'),
+                        fit: BoxFit.cover,
                       ),
-                      child: SplashTp(),
-                    ))
+                      color: color,
+                    ),
+                    child: SplashTp(),
+                  )
                 : SplashTp(),
           ],
         ),

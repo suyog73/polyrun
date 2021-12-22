@@ -10,25 +10,20 @@ class AuthButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        // Do on press
-      },
-      child: Container(
-        alignment: Alignment.center,
-        height: 54,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(27),
-          color: Color(0xffE8547C),
-        ),
-        child: Text(
-          text,
-          style: TextStyle(
-            fontSize: 17,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
-          ),
+    return Container(
+      alignment: Alignment.center,
+      height: 54,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(27),
+        color: Color(0xffE8547C),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 17,
+          fontWeight: FontWeight.w500,
+          color: Colors.white,
         ),
       ),
     );
