@@ -30,6 +30,7 @@ flutter:
     - assets/icons/
     - assets/images/tracking/
     - assets/images/history/
+    - assets/images/profile/
 
   fonts:
     - family: Montserrat

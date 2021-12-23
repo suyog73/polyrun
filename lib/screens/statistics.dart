@@ -5,17 +5,25 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:work_app/widgets/big_icons.dart';
-import 'package:work_app/widgets/graph_chart.dart';
-import 'package:work_app/widgets/icon_back.dart';
+import 'package:work_app/widgets/statistics/big_icons.dart';
+import 'package:work_app/widgets/statistics/graph_chart.dart';
+import 'package:work_app/widgets/statistics/icon_back.dart';
 
 class Statistics extends StatelessWidget {
   const Statistics({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
+    Color color = isDark ? Color(0xff0B0D1B) : Colors.white;
+
+    Color color2 = isDark
+        ? Color(0xff0B0D1B).withOpacity(0.82)
+        : Colors.white.withOpacity(0.4);
+
     return Scaffold(
-      backgroundColor: Color(0xff0B0D1B),
+      backgroundColor: color,
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -27,7 +35,9 @@ class Statistics extends StatelessWidget {
             ClipRect(
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 65.0, sigmaY: 65.0),
-                child: Container(color: Color(0xff0B0D1B).withOpacity(0.82)),
+                child: Container(
+                  color: color2,
+                ),
               ),
             ),
             SingleChildScrollView(
@@ -66,7 +76,7 @@ class Statistics extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            IconBack(img: 'icon')
+                            IconBack(img: isDark ? 'light_icon' : 'dark_icon')
                           ],
                         ),
                         SizedBox(height: 29),
@@ -76,7 +86,7 @@ class Statistics extends StatelessWidget {
                             Text(
                               'Daily Goals',
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w500),
+                                  fontSize: 18, fontWeight: FontWeight.w600),
                             ),
                             Text(
                               'Add New',
@@ -120,7 +130,7 @@ class Statistics extends StatelessWidget {
                               'My Activity',
                               style: TextStyle(
                                 fontSize: 18,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                             Row(
@@ -156,7 +166,7 @@ class Statistics extends StatelessWidget {
                                 'All',
                                 style: TextStyle(
                                   color: Color(0xff60eefb),
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w600,
                                   fontSize: 16,
                                 ),
                               ),
@@ -258,7 +268,7 @@ class BottomInfo extends StatelessWidget {
           style: TextStyle(
             color: color,
             fontSize: 18,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
           ),
         )
       ],

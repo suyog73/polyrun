@@ -22,10 +22,14 @@ class HistoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return Container(
       height: 95,
       decoration: BoxDecoration(
-        color: Color(0xff707070).withOpacity(0.05),
+        color: isDark
+            ? Color(0xff707070).withOpacity(0.05)
+            : Colors.white.withOpacity(0.9),
         borderRadius: BorderRadius.circular(24),
       ),
       child: Row(
@@ -47,9 +51,9 @@ class HistoryCard extends StatelessWidget {
                   Text(
                     title,
                     style: TextStyle(
-                      color: Color(0xffffffff),
+                      color: isDark ? Color(0xffffffff) : Color(0xff000000),
                       fontSize: 18,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   Row(
@@ -60,7 +64,7 @@ class HistoryCard extends StatelessWidget {
                         style: TextStyle(
                           color: Color(0xff818496),
                           fontSize: 13,
-                          fontWeight: FontWeight.w200,
+                          fontWeight: FontWeight.w100,
                         ),
                       ),
                       Text(
@@ -68,7 +72,7 @@ class HistoryCard extends StatelessWidget {
                         style: TextStyle(
                           color: Color(0xff818496),
                           fontSize: 14,
-                          fontWeight: FontWeight.w200,
+                          fontWeight: FontWeight.w100,
                         ),
                       ),
                     ],

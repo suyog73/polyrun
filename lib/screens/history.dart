@@ -2,20 +2,23 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:work_app/widgets/big_icons2.dart';
-import 'package:work_app/widgets/history_card.dart';
+import 'package:work_app/widgets/history/history_card.dart';
 
 class History extends StatelessWidget {
   const History({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    String img = isDark ? '1' : '11';
+
     return Scaffold(
-      backgroundColor: Color(0xff121322).withOpacity(0.2),
+      backgroundColor: isDark ? Color(0xff121322) : Colors.white,
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/history/back1.png'),
+            image: AssetImage('assets/images/history/back$img.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -63,7 +66,9 @@ class History extends StatelessWidget {
                         child: BackdropFilter(
                           filter: ImageFilter.blur(sigmaX: 50.0, sigmaY: 50.0),
                           child: Container(
-                            color: Color(0xff121322).withOpacity(0.75),
+                            color: isDark
+                                ? Color(0xff121322).withOpacity(0.7)
+                                : Colors.white.withOpacity(0.4),
                           ),
                         ),
                       ),
@@ -86,7 +91,9 @@ class History extends StatelessWidget {
                               Text(
                                 'Track History',
                                 style: TextStyle(
-                                  color: Color(0xffffffff),
+                                  color: isDark
+                                      ? Color(0xffffffff)
+                                      : Color(0xff000000),
                                   fontSize: 24,
                                   fontWeight: FontWeight.w600,
                                 ),

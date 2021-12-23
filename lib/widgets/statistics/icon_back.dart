@@ -8,6 +8,8 @@ class IconBack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return Stack(
       alignment: Alignment.center,
       children: [

@@ -22,9 +22,21 @@ final screens = [Statistics(), History(), Tracking(), Profile(), Setting()];
 class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
+    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark
+        ? true
+        : false;
+
+    Color color = isDark
+        ? Color(0xff121322).withOpacity(0.75)
+        : Colors.white.withOpacity(0.99);
+
+    Color color2 = isDark
+        ? Color(0xff121322).withOpacity(0.75)
+        : Colors.white.withOpacity(0.6);
+
     return Scaffold(
       extendBody: isExtend,
-      backgroundColor: Color(0xff0B0D1B),
+      backgroundColor: isDark ? Color(0xff0B0D1B) : Colors.white,
       body: screens[_currentIndex],
       bottomNavigationBar: Container(
         height: 84,
@@ -43,7 +55,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
             type: BottomNavigationBarType.fixed,
             showSelectedLabels: false,
             showUnselectedLabels: false,
-            backgroundColor: Color(0xff707070).withOpacity(0.2),
+            backgroundColor: isDark
+                ? Color(0xff707070).withOpacity(0.2)
+                : Colors.white.withOpacity(0.9),
             currentIndex: _currentIndex,
             selectedIconTheme: IconThemeData(color: Color(0xffE8547C)),
             unselectedIconTheme: IconThemeData(

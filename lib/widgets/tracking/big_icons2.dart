@@ -19,6 +19,8 @@ class BigIcons2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -43,6 +45,7 @@ class BigIcons2 extends StatelessWidget {
                 value,
                 style: TextStyle(
                   fontSize: 14,
+                  color: value == 'Walk' ? Colors.white : Color(0xff818496),
                   fontWeight:
                       value == 'Walk' ? FontWeight.w600 : FontWeight.w200,
                 ),

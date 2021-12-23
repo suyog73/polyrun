@@ -2,19 +2,23 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:work_app/widgets/big_icons2.dart';
+import 'package:work_app/widgets/tracking/big_icons2.dart';
 
 class Tracking extends StatelessWidget {
   const Tracking({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    String img = isDark ? '1' : '11';
+
     return Scaffold(
-      backgroundColor: Color(0xff121322).withOpacity(0.2),
+      backgroundColor:
+          isDark ? Color(0xff121322).withOpacity(0.2) : Colors.white,
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/tracking/back1.png'),
+            image: AssetImage('assets/images/tracking/back$img.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -62,7 +66,9 @@ class Tracking extends StatelessWidget {
                         child: BackdropFilter(
                           filter: ImageFilter.blur(sigmaX: 50.0, sigmaY: 50.0),
                           child: Container(
-                            color: Color(0xff121322).withOpacity(0.75),
+                            color: isDark
+                                ? Color(0xff121322).withOpacity(0.75)
+                                : Colors.white.withOpacity(0.5),
                           ),
                         ),
                       ),
@@ -144,7 +150,9 @@ class Tracking extends StatelessWidget {
                                   Text(
                                     '6.50/Km',
                                     style: TextStyle(
-                                      color: Color(0xffffffff),
+                                      color: isDark
+                                          ? Color(0xffffffff)
+                                          : Color(0xffE8547C),
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
                                     ),

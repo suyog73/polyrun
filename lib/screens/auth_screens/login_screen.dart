@@ -4,94 +4,76 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:work_app/helpers/constants.dart';
+import 'package:work_app/screens/auth_screens/signup_screen.dart';
 import 'package:work_app/screens/bottom_navigation.dart';
-import 'package:work_app/widgets/auth_button.dart';
-import 'package:work_app/widgets/input_fields.dart';
-import 'package:work_app/widgets/social_media_images.dart';
+import 'package:work_app/widgets/auth_widgets/auth_button.dart';
+import 'package:work_app/widgets/auth_widgets/input_fields.dart';
+import 'package:work_app/widgets/auth_widgets/social_media_images.dart';
 
-import 'login_screen2.dart';
-
-class SignupScreen2 extends StatelessWidget {
-  const SignupScreen2({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    print('size $size');
     bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark
         ? true
         : false;
 
-    Color color = isDark ? Color(0xff0B0D1B) : Colors.white;
-    print('darkmode: $isDark');
+    Color color = isDark
+        ? Color(0xff121322).withOpacity(0.75)
+        : Colors.white.withOpacity(0.99);
+
+    Color color2 = isDark
+        ? Color(0xff121322).withOpacity(0.75)
+        : Colors.white.withOpacity(0.6);
 
     return Scaffold(
       backgroundColor: color,
       body: Column(
         children: [
           Expanded(
-            flex: 1,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            flex: 3,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 51.0, left: 16),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pushReplacement(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.leftToRight,
-                          child: LoginScreen2(),
-                        ),
-                      );
-                    },
-                    child: Icon(
-                      Icons.arrow_back,
-                      color: isDark ? Colors.white : Colors.black,
-                      size: 24,
-                    ),
+                Hero(
+                  tag: kHeroTag,
+                  child: Image(
+                    image: AssetImage('assets/images/logo.png'),
+                    width: 44.46,
+                    height: 61.66,
                   ),
                 ),
-                SizedBox(height: 10),
-                Row(
+                SizedBox(width: 5),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image(
-                      image: AssetImage('assets/images/logo.png'),
-                      width: 44.46,
-                      height: 61.66,
+                    Text(
+                      'Polyrun',
+                      style: TextStyle(
+                        color: Color(0xffE8547C),
+                        fontSize: 30,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                    SizedBox(width: 5),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Polyrun',
-                          style: TextStyle(
-                            color: Color(0xffE8547C),
-                            fontSize: 30,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        SizedBox(height: 1.5),
-                        Text(
-                          'BETA',
-                          style: TextStyle(
-                            color: Color(0xff60EEFB),
-                            fontSize: 10,
-                          ),
-                        )
-                      ],
-                    ),
+                    SizedBox(height: 1.5),
+                    Text(
+                      'BETA',
+                      style: TextStyle(
+                        color: Color(0xff60EEFB),
+                        fontSize: 10,
+                        fontWeight: FontWeight.w200,
+                      ),
+                    )
                   ],
                 ),
               ],
             ),
           ),
           Expanded(
-            flex: 3,
+            flex: 8,
             child: ClipRRect(
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(42),
@@ -100,7 +82,7 @@ class SignupScreen2 extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/images/signupback.png'),
+                    image: AssetImage('assets/images/loginback.png'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -114,22 +96,22 @@ class SignupScreen2 extends StatelessWidget {
                       child: BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: 50.0, sigmaY: 50.0),
                         child: Container(
-                          color: Color(0xff121322).withOpacity(0.75),
+                          color: color2,
                         ),
                       ),
                     ),
                     SingleChildScrollView(
                       physics: BouncingScrollPhysics(),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         child: Column(
                           children: [
                             SizedBox(height: 22),
                             Text(
-                              'Sign Up',
+                              'Sign In',
                               style: TextStyle(
                                 fontSize: 24,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                             SizedBox(height: 14),
@@ -151,38 +133,26 @@ class SignupScreen2 extends StatelessWidget {
                               child: Column(
                                 children: [
                                   InputFields(
-                                    hintText: 'Create Username',
-                                    isDark: isDark,
-                                  ),
+                                      hintText: 'Username', isDark: isDark),
                                   InputFields(
-                                    hintText: 'Password',
-                                    isDark: isDark,
-                                  ),
-                                  InputFields(
-                                      hintText: 'Confirm Password',
-                                      isDark: isDark),
-                                  SizedBox(height: 35),
+                                      hintText: 'Password', isDark: isDark),
+                                  SizedBox(height: 20),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Text(
-                                        'By Signing Up you agree to out ',
-                                        style: TextStyle(
-                                          color: Color(0xffafb2c6),
-                                          fontSize: 12,
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Text(
+                                          'Forgot Password?',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Color(0xff60EEFB),
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        'Terms of use',
-                                        style: TextStyle(
-                                          color: Color(0xffE8547C),
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 12,
-                                        ),
-                                      ),
+                                      )
                                     ],
                                   ),
-                                  SizedBox(height: 56),
+                                  SizedBox(height: 68),
                                   InkWell(
                                       onTap: () {
                                         Navigator.pushReplacement(
@@ -194,18 +164,8 @@ class SignupScreen2 extends StatelessWidget {
                                           ),
                                         );
                                       },
-                                      child: AuthButton(text: 'SIGN UP')),
-                                  SizedBox(height: 40),
-                                  Text(
-                                    'Or sign Up with',
-                                    style: TextStyle(
-                                      color: isDark
-                                          ? Color(0xffAFB2C6).withOpacity(0.5)
-                                          : Color(0xff121322),
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                  SizedBox(height: 23),
+                                      child: AuthButton(text: 'SIGN IN')),
+                                  SizedBox(height: 47),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
@@ -219,8 +179,8 @@ class SignupScreen2 extends StatelessWidget {
                                       SocialMediaImages(
                                         img: 'google',
                                         height: 23.32,
-                                        isDark: isDark,
                                         width: 22.84,
+                                        isDark: isDark,
                                       ),
                                       SocialMediaImages(
                                         img: 'twitter',
@@ -230,12 +190,12 @@ class SignupScreen2 extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 44),
+                                  SizedBox(height: 54),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        'Already have an Account here? ',
+                                        'Don\'t have any Account here ?  ',
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: Color(0xff818496),
@@ -247,26 +207,27 @@ class SignupScreen2 extends StatelessWidget {
                                             context,
                                             PageTransition(
                                               type: PageTransitionType
-                                                  .leftToRight,
-                                              child: LoginScreen2(),
+                                                  .rightToLeft,
+                                              child: SignupScreen(),
                                             ),
                                             // MaterialPageRoute(
-                                            //   builder: (context) => LoginScreen(),
+                                            //   builder: (context) =>
+                                            //       SignupScreen(),
                                             // ),
                                           );
                                         },
                                         child: Text(
-                                          'SIGN IN',
+                                          'SIGN UP',
                                           style: TextStyle(
                                             fontSize: 14,
-                                            fontWeight: FontWeight.w500,
+                                            fontWeight: FontWeight.w600,
                                             color: Color(0xff60EEFB),
                                           ),
                                         ),
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 44),
+                                  SizedBox(height: 54),
                                 ],
                               ),
                             ),
