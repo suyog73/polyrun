@@ -30,7 +30,7 @@ class InputFields extends StatelessWidget {
         ),
         child: TextFormField(
           style: TextStyle(
-            color: Color(0xff818496).withOpacity(0.1),
+            color: Color(0xff818496),
             fontSize: 14,
           ),
           decoration: kTextFormFieldAuthDec.copyWith(

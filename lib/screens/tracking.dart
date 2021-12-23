@@ -2,6 +2,8 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:work_app/providers/theme_provider.dart';
 import 'package:work_app/widgets/tracking/big_icons2.dart';
 
 class Tracking extends StatelessWidget {
@@ -9,7 +11,7 @@ class Tracking extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    bool isDark = Provider.of<ThemeProvider>(context).getDarkMode;
     String img = isDark ? '1' : '11';
 
     return Scaffold(
@@ -168,7 +170,7 @@ class Tracking extends StatelessWidget {
                                   height: 98,
                                 ),
                               ),
-                              SizedBox(height: 37),
+                              SizedBox(height: 150),
                             ],
                           ),
                         ),

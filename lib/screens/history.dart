@@ -2,15 +2,17 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:work_app/providers/theme_provider.dart';
 import 'package:work_app/widgets/history/history_card.dart';
 
-class History extends StatelessWidget {
-  const History({Key? key}) : super(key: key);
+class History1 extends StatelessWidget {
+  const History1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    bool isDark = Provider.of<ThemeProvider>(context).getDarkMode;
     String img = isDark ? '1' : '11';
 
     return Scaffold(
@@ -147,7 +149,7 @@ class History extends StatelessWidget {
                                 imgh: 30.55,
                                 color: Color(0xff60EEFB).withOpacity(0.1),
                               ),
-                              SizedBox(height: 16),
+                              SizedBox(height: 116),
                             ],
                           ),
                         ),

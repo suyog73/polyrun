@@ -3,6 +3,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
+import 'package:work_app/providers/theme_provider.dart';
 import 'package:work_app/screens/bottom_navigation.dart';
 import 'package:work_app/widgets/auth_widgets/auth_button.dart';
 import 'package:work_app/widgets/auth_widgets/input_fields.dart';
@@ -15,13 +17,10 @@ class SignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? true
-        : false;
+    bool isDark = Provider.of<ThemeProvider>(context).getDarkMode;
 
     Color color = isDark
-        ? Color(0xff121322).withOpacity(0.75)
+        ? Color(0xff121322).withOpacity(0.9)
         : Colors.white.withOpacity(0.99);
 
     Color color2 = isDark
@@ -61,7 +60,7 @@ class SignupScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image(
-                      image: AssetImage('assets/images/logo.png'),
+                      image: AssetImage('assets/images/auth/logo.png'),
                       width: 44.46,
                       height: 61.66,
                     ),
@@ -103,7 +102,7 @@ class SignupScreen extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/images/signupback.png'),
+                    image: AssetImage('assets/images/auth/signupback.png'),
                     fit: BoxFit.cover,
                   ),
                 ),

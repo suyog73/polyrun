@@ -2,6 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:work_app/providers/theme_provider.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
@@ -16,7 +18,7 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    bool isDark = Provider.of<ThemeProvider>(context).getDarkMode;
 
     return Container(
       height: 95,

@@ -3,6 +3,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:work_app/providers/theme_provider.dart';
 import 'package:work_app/widgets/profile/profile_card.dart';
 import 'package:work_app/widgets/profile/simple_card.dart';
 
@@ -11,7 +13,7 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    bool isDark = Provider.of<ThemeProvider>(context).getDarkMode;
 
     return Scaffold(
       backgroundColor: isDark ? Color(0xff0B0D1B) : Colors.white,
@@ -299,6 +301,7 @@ class Profile extends StatelessWidget {
                         ),
                       ),
                     ),
+                    SizedBox(height: 110),
                   ],
                 ),
               ),

@@ -5,6 +5,8 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:work_app/providers/theme_provider.dart';
 import 'package:work_app/widgets/statistics/big_icons.dart';
 import 'package:work_app/widgets/statistics/graph_chart.dart';
 import 'package:work_app/widgets/statistics/icon_back.dart';
@@ -14,7 +16,7 @@ class Statistics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    bool isDark = Provider.of<ThemeProvider>(context).getDarkMode;
 
     Color color = isDark ? Color(0xff0B0D1B) : Colors.white;
 
@@ -27,7 +29,7 @@ class Statistics extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/statistics.png'),
+            image: AssetImage('assets/images/statistics/statistics.png'),
           ),
         ),
         child: Stack(
@@ -225,7 +227,7 @@ class Statistics extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(height: 30),
+                        SizedBox(height: 50),
                       ],
                     ),
                   ],

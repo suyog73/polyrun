@@ -8,8 +8,6 @@ class IconBack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
-
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -22,7 +20,7 @@ class IconBack extends StatelessWidget {
           ),
         ),
         Image(
-          image: AssetImage('assets/icons/$img.png'),
+          image: AssetImage('assets/images/statistics/$img.png'),
           width: 18.16,
           height: 18.16,
         )

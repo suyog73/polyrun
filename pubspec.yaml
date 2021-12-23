@@ -16,6 +16,7 @@ dependencies:
   page_transition: ^2.0.4
   google_fonts: ^2.1.0
   fl_chart: ^0.40.6
+  adaptive_theme: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -27,10 +28,13 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/icons/
+    - assets/images/auth/
+    - assets/images/navigationBar/
+    - assets/images/statistics/
     - assets/images/tracking/
     - assets/images/history/
     - assets/images/profile/
+    - assets/images/setting/
 
   fonts:
     - family: Montserrat

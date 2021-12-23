@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:work_app/providers/theme_provider.dart';
 import 'package:work_app/screens/history.dart';
 import 'package:work_app/screens/profile.dart';
 import 'package:work_app/screens/setting.dart';
@@ -16,23 +18,26 @@ class BottomNavigation extends StatefulWidget {
   _BottomNavigationState createState() => _BottomNavigationState();
 }
 
-int _currentIndex = 0;
-final screens = [Statistics(), History(), Tracking(), Profile(), Setting()];
-
 class _BottomNavigationState extends State<BottomNavigation> {
+  int _currentIndex = 0;
+  List<Widget> screens = [
+    Statistics(),
+    History1(),
+    Tracking(),
+    Profile(),
+    Setting(),
+  ];
+
+  void onItemTap(int index) {
+    setState(() {
+      _currentIndex = index;
+      isExtend = index != 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? true
-        : false;
-
-    Color color = isDark
-        ? Color(0xff121322).withOpacity(0.75)
-        : Colors.white.withOpacity(0.99);
-
-    Color color2 = isDark
-        ? Color(0xff121322).withOpacity(0.75)
-        : Colors.white.withOpacity(0.6);
+    bool isDark = Provider.of<ThemeProvider>(context).getDarkMode;
 
     return Scaffold(
       extendBody: isExtend,
@@ -40,12 +45,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
       body: screens[_currentIndex],
       bottomNavigationBar: Container(
         height: 84,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(47),
-            topLeft: Radius.circular(47),
-          ),
-        ),
         child: ClipRRect(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(47.0),
@@ -53,50 +52,59 @@ class _BottomNavigationState extends State<BottomNavigation> {
           ),
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
+            unselectedFontSize: 0.0,
+            selectedFontSize: 0.0,
             showSelectedLabels: false,
             showUnselectedLabels: false,
-            backgroundColor: isDark
-                ? Color(0xff707070).withOpacity(0.2)
-                : Colors.white.withOpacity(0.9),
-            currentIndex: _currentIndex,
+            backgroundColor: isDark ? Color(0xff0B0D1B) : Colors.white,
             selectedIconTheme: IconThemeData(color: Color(0xffE8547C)),
             unselectedIconTheme: IconThemeData(
               color: Color(0xff818496).withOpacity(0.7),
             ),
             onTap: (index) => setState(() {
-              _currentIndex = index;
-              isExtend = index != 0;
+              onItemTap(index);
             }),
+            currentIndex: _currentIndex,
             items: [
               BottomNavigationBarItem(
                 icon: ImageIcon(
-                  AssetImage("assets/icons/nav1.png"),
+                  _currentIndex == 0
+                      ? AssetImage("assets/images/navigationBar/nav11.png")
+                      : AssetImage("assets/images/navigationBar/nav1.png"),
                 ),
-                label: 'statistics',
+                label: 'Statistics',
               ),
               BottomNavigationBarItem(
                 icon: ImageIcon(
-                  AssetImage("assets/icons/nav2.png"),
+                  _currentIndex == 1
+                      ? AssetImage("assets/images/navigationBar/nav22.png")
+                      : AssetImage("assets/images/navigationBar/nav2.png"),
                 ),
-                label: 'auth_screens',
+                label: 'History',
               ),
               BottomNavigationBarItem(
                 icon: ImageIcon(
-                  AssetImage("assets/icons/nav3.png"),
+                  _currentIndex == 2
+                      ? AssetImage("assets/images/navigationBar/nav33.png")
+                      : AssetImage("assets/images/navigationBar/nav3.png"),
                 ),
-                label: 'history',
+                label: 'Tracking',
               ),
               BottomNavigationBarItem(
                 icon: ImageIcon(
-                  AssetImage("assets/icons/nav4.png"),
+                  _currentIndex == 3
+                      ? AssetImage("assets/images/navigationBar/nav44.png")
+                      : AssetImage("assets/images/navigationBar/nav4.png"),
                 ),
-                label: 'profile',
+                label: 'Profile',
               ),
               BottomNavigationBarItem(
                 icon: ImageIcon(
-                  AssetImage("assets/icons/nav5.png"),
+                  _currentIndex == 4
+                      ? AssetImage("assets/images/navigationBar/nav55.png")
+                      : AssetImage("assets/images/navigationBar/nav5.png"),
                 ),
-                label: 'settings',
+                label: 'Settings',
               ),
             ],
           ),

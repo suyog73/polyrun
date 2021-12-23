@@ -31,7 +31,7 @@ class SocialMediaImages extends StatelessWidget {
           ),
         ),
         Image(
-            image: AssetImage('assets/images/$img.png'),
+            image: AssetImage('assets/images/auth/$img.png'),
             width: width,
             height: height,
             color: isDark

@@ -128,6 +128,7 @@ class _GraphChartState extends State<GraphChart> {
             FlSpot(3.8, 1.5),
             FlSpot(4.9, 0.5),
             FlSpot(5.5, 2.5),
+            FlSpot(6, 1.5),
           ],
           isCurved: true,
           colors: gradientColors,

@@ -4,20 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ThemeProvider extends ChangeNotifier {
-  ThemeMode themeMode = ThemeMode.system;
+  // ThemeMode themeMode = ThemeMode.system;
 
-  bool get isDarkMode => themeMode == ThemeMode.dark;
+  bool _darkMode;
+
+  ThemeProvider(this._darkMode);
+
+  bool get getDarkMode => _darkMode;
 
   void toggleTheme(bool isOn) {
-    themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
-
+    _darkMode = !_darkMode;
     notifyListeners();
   }
 }
 
 class MyTheme {
   static final darkTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.grey.shade900,
+    // scaffoldBackgroundColor: Colors.grey.shade900,
     primaryColor: Colors.black,
     fontFamily: 'Montserrat',
     colorScheme: ColorScheme.dark(),

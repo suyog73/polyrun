@@ -4,8 +4,12 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'package:work_app/helpers/constants.dart';
-import 'package:work_app/screens/auth_screens/login_screen.dart';
+import 'package:work_app/providers/theme_provider.dart';
+
+import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -28,21 +32,20 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark
-        ? true
-        : false;
+    // bool isDark = MediaQuery.of(context).platformBrightness != Brightness.dark;
+
+    bool isDark = Provider.of<ThemeProvider>(context).getDarkMode;
 
     Color color = isDark
-        ? Color(0xff0B0D1B).withOpacity(0.2)
+        ? Color(0xff0B0D1B).withOpacity(0.7)
         : Colors.white.withOpacity(0.1);
 
-    print('darkmode: $isDark');
-
     return Scaffold(
+      // backgroundColor: Colors.white,
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/splashback.png'),
+            image: AssetImage('assets/images/auth/splashback.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -50,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             ClipRect(
               child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 100.0, sigmaY: 100.0),
+                filter: ImageFilter.blur(sigmaX: 50.0, sigmaY: 50.0),
                 child: Container(
                     // color: color,
                     ),
@@ -60,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ? Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/splashback2.png'),
+                        image: AssetImage('assets/images/auth/splashback2.png'),
                         fit: BoxFit.cover,
                       ),
                       color: color,
@@ -89,7 +92,7 @@ class SplashTp extends StatelessWidget {
           Hero(
             tag: kHeroTag,
             child: Image(
-              image: AssetImage('assets/images/logo.png'),
+              image: AssetImage('assets/images/auth/logo.png'),
               width: 100,
               height: 130,
             ),
