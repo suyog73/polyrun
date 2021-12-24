@@ -10,8 +10,6 @@ import 'package:work_app/screens/setting.dart';
 import 'package:work_app/screens/statistics.dart';
 import 'package:work_app/screens/tracking.dart';
 
-bool isExtend = false;
-
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({Key? key}) : super(key: key);
 
@@ -20,7 +18,7 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   int _index = 0;
   List<Widget> screens = [
@@ -34,7 +32,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
   void onItemTap(int index) {
     setState(() {
       _index = index;
-      isExtend = index != 0;
     });
   }
 
@@ -43,12 +40,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
     bool isDark = Provider.of<ThemeProvider>(context).getDarkMode;
     Color color = isDark ? Color(0xff0B0D1B).withOpacity(0.95) : Colors.white;
 
-    Color color2 = isDark
-        ? Color(0xff0B0D1B).withOpacity(0.95)
-        : Colors.white.withOpacity(0.98);
+    // Background color of bottom bar
+    // Todo change color2 here
+    Color color2 = isDark ? Color(0xff707070) : Colors.white;
 
     return Scaffold(
-      extendBody: isExtend,
+      extendBody: true,
       backgroundColor: color,
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.only(
