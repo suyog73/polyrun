@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:work_app/providers/theme_provider.dart';
@@ -19,7 +20,9 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  int _currentIndex = 0;
+  GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+
+  int _index = 0;
   List<Widget> screens = [
     Statistics(),
     History1(),
@@ -30,7 +33,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   void onItemTap(int index) {
     setState(() {
-      _currentIndex = index;
+      _index = index;
       isExtend = index != 0;
     });
   }
@@ -38,78 +41,64 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     bool isDark = Provider.of<ThemeProvider>(context).getDarkMode;
+    Color color = isDark ? Color(0xff0B0D1B).withOpacity(0.95) : Colors.white;
+
+    Color color2 = isDark
+        ? Color(0xff0B0D1B).withOpacity(0.95)
+        : Colors.white.withOpacity(0.98);
 
     return Scaffold(
       extendBody: isExtend,
-      backgroundColor: isDark ? Color(0xff0B0D1B) : Colors.white,
-      body: screens[_currentIndex],
-      bottomNavigationBar: Container(
-        height: 84,
-        child: ClipRRect(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(47.0),
-            topRight: Radius.circular(47.0),
-          ),
-          child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            unselectedFontSize: 0.0,
-            selectedFontSize: 0.0,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            backgroundColor: isDark ? Color(0xff0B0D1B) : Colors.white,
-            selectedIconTheme: IconThemeData(color: Color(0xffE8547C)),
-            unselectedIconTheme: IconThemeData(
-              color: Color(0xff818496).withOpacity(0.7),
-            ),
-            onTap: (index) => setState(() {
-              onItemTap(index);
-            }),
-            currentIndex: _currentIndex,
-            items: [
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  _currentIndex == 0
-                      ? AssetImage("assets/images/navigationBar/nav11.png")
-                      : AssetImage("assets/images/navigationBar/nav1.png"),
-                ),
-                label: 'Statistics',
-              ),
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  _currentIndex == 1
-                      ? AssetImage("assets/images/navigationBar/nav22.png")
-                      : AssetImage("assets/images/navigationBar/nav2.png"),
-                ),
-                label: 'History',
-              ),
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  _currentIndex == 2
-                      ? AssetImage("assets/images/navigationBar/nav33.png")
-                      : AssetImage("assets/images/navigationBar/nav3.png"),
-                ),
-                label: 'Tracking',
-              ),
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  _currentIndex == 3
-                      ? AssetImage("assets/images/navigationBar/nav44.png")
-                      : AssetImage("assets/images/navigationBar/nav4.png"),
-                ),
-                label: 'Profile',
-              ),
-              BottomNavigationBarItem(
-                icon: ImageIcon(
-                  _currentIndex == 4
-                      ? AssetImage("assets/images/navigationBar/nav55.png")
-                      : AssetImage("assets/images/navigationBar/nav5.png"),
-                ),
-                label: 'Settings',
-              ),
-            ],
-          ),
+      backgroundColor: color,
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(25.0),
+          topRight: Radius.circular(25.0),
+        ),
+        child: CurvedNavigationBar(
+          color: color2,
+          buttonBackgroundColor: Colors.transparent,
+          backgroundColor: Colors.transparent,
+          key: _bottomNavigationKey,
+          index: _index,
+          items: [
+            _index == 0
+                ? ImageIcon(
+                    AssetImage("assets/images/navigationBar/nav11.png"),
+                    color: Color(0xffE8547C),
+                  )
+                : ImageIcon(AssetImage("assets/images/navigationBar/nav1.png")),
+            _index == 1
+                ? ImageIcon(
+                    AssetImage("assets/images/navigationBar/nav22.png"),
+                    color: Color(0xffE8547C),
+                  )
+                : ImageIcon(AssetImage("assets/images/navigationBar/nav2.png")),
+            _index == 2
+                ? ImageIcon(
+                    AssetImage("assets/images/navigationBar/nav33.png"),
+                    color: Color(0xffE8547C),
+                  )
+                : ImageIcon(AssetImage("assets/images/navigationBar/nav3.png")),
+            _index == 3
+                ? ImageIcon(
+                    AssetImage("assets/images/navigationBar/nav44.png"),
+                    color: Color(0xffE8547C),
+                  )
+                : ImageIcon(AssetImage("assets/images/navigationBar/nav4.png")),
+            _index == 4
+                ? ImageIcon(
+                    AssetImage("assets/images/navigationBar/nav55.png"),
+                    color: Color(0xffE8547C),
+                  )
+                : ImageIcon(AssetImage("assets/images/navigationBar/nav5.png")),
+          ],
+          onTap: (index) => setState(() {
+            onItemTap(index);
+          }),
         ),
       ),
+      body: screens[_index],
     );
   }
 }

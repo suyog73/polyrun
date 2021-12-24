@@ -19,12 +19,14 @@ class BigIcons2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Stack(
       alignment: Alignment.center,
       children: [
         Container(
-          width: 112,
-          height: 112,
+          width: size.width * 0.26,
+          height: 110,
           decoration: BoxDecoration(
             color: color,
             borderRadius: BorderRadius.circular(24),

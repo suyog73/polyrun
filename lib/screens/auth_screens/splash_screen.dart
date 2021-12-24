@@ -54,23 +54,22 @@ class _SplashScreenState extends State<SplashScreen> {
             ClipRect(
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 50.0, sigmaY: 50.0),
-                child: Container(
-                    // color: color,
-                    ),
+                child: Container(color: color),
               ),
             ),
-            isDark
-                ? Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/auth/splashback2.png'),
-                        fit: BoxFit.cover,
-                      ),
-                      color: color,
-                    ),
-                    child: SplashTp(),
-                  )
-                : SplashTp(),
+            // isDark
+            //     ? Container(
+            //         decoration: BoxDecoration(
+            //           image: DecorationImage(
+            //             image: AssetImage('assets/images/auth/splashback2.png'),
+            //             fit: BoxFit.cover,
+            //           ),
+            //           color: color,
+            //         ),
+            //         child: SplashTp(),
+            //       )
+            //     :
+            SplashTp(),
           ],
         ),
       ),

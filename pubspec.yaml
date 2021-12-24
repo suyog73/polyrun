@@ -17,11 +17,18 @@ dependencies:
   google_fonts: ^2.1.0
   fl_chart: ^0.40.6
   adaptive_theme: ^2.3.0
+  flutter_launcher_icons: ^0.9.2
+  curved_navigation_bar: ^1.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/auth/logo2.png"
 
 flutter:
   uses-material-design: true
