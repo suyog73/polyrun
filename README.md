@@ -1,1 +1,2 @@
-Ui design for Polygon app as a part of internship
+Ui design for Polygon app as a part of Freelancing
+
